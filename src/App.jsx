@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import "./App.css";
 
 //components
 import Hero from "./pages/Hero";
@@ -7,7 +8,7 @@ import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Experience from "./pages/Experience";
 import Work from "./pages/Work";
-("./pages/work");
+
 
 function App() {
   return (
