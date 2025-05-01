@@ -1,9 +1,11 @@
-import React from 'react'
+import ServicesSection from "../components/ServicesSection";
 
-function ServicesPage() {
+function Services() {
   return (
-    <div>ServicePages</div>
-  )
+    <div>
+      <ServicesSection />
+    </div>
+  );
 }
 
-export default ServicesPage
+export default Services;

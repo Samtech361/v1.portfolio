@@ -1,32 +1,27 @@
-import './App.css'
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import Homepage from './pages/Homepage'
-import Navbar from './components/Navbar'
-import AboutPage from './pages/About'
-import ServicesPage from './pages/Services'
-import WorksPage from './pages/Works'
-import ContactPage from './pages/Contact'
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Layout from "./components/Layout";
+import Home from "./pages/Home";
+import About from "./pages/About";
+import Services from "./pages/Services";
+import Works from "./pages/Works";
+import Blogs from "./pages/Blogs";
+import Contact from "./pages/Contact";
 
 function App() {
-
-
   return (
-    <div className='w-full flex h-screen'>
-      <Router>
-      <Navbar />
-      <div className='bg-blue-200 flex w-full'>
-        <Routes>
-          <Route path='/home' element={<Homepage/>} />
-          <Route path='/about' element={<AboutPage/>} />
-          <Route path='/services' element={<ServicesPage/>} />
-          <Route path='/works' element={<WorksPage/>} />
-          <Route path='/contact' element={<ContactPage/>} />
-        </Routes>
-      </div>
-      </Router>
-      
-    </div>
-  )
+    <Router>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/services" element={<Services />} />
+          <Route path="/works" element={<Works />} />
+          <Route path="/blogs" element={<Blogs />} />
+          <Route path="/contact" element={<Contact />} />
+        </Route>
+      </Routes>
+    </Router>
+  );
 }
 
-export default App
+export default App;
