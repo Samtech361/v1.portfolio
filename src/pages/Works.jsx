@@ -12,18 +12,6 @@ const projects = [
     category: "UI DESIGN",
     title: "Firogo Majestic Co Ltd.",
   },
-  {
-    image:
-      "https://uploadthingy.s3.us-west-1.amazonaws.com/5WSbrznQS14aVokkoszEf7/works.png",
-    category: "UI DESIGN",
-    title: "Firogo Majestic Co Ltd.",
-  },
-  {
-    image:
-      "https://uploadthingy.s3.us-west-1.amazonaws.com/5WSbrznQS14aVokkoszEf7/works.png",
-    category: "UI DESIGN",
-    title: "Firogo Majestic Co Ltd.",
-  },
 ];
 const WorksSection = () => {
   return (

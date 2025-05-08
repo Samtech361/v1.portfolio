@@ -12,8 +12,9 @@ function Hero() {
             Based in Kenya
           </h1>
           <p className="text-gray-600 mb-8">
-            I&apos;m a Kenyan based web developer with{" "}
-            <span className="text-indigo-500">2+ years</span> of experience
+            I build sleek, scalable web apps with JavaScript and React.
+            <br />
+            Let’s bring your ideas to life.
           </p>
           <div className="flex flex-col sm:flex-row gap-4">
             <a

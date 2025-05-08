@@ -1,5 +1,6 @@
 import { BrowserRouter as Router } from "react-router-dom";
 import Layout from "./components/Layout";
+import Section from "./components/Section";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Services from "./pages/Services";
@@ -10,21 +11,21 @@ function App() {
   return (
     <Router>
       <Layout>
-        <div id="home" className="section">
+        <Section id="home">
           <Home />
-        </div>
-        <div id="about" className="section">
+        </Section>
+        <Section id="about">
           <About />
-        </div>
-        <div id="services" className="section">
+        </Section>
+        <Section id="services">
           <Services />
-        </div>
-        <div id="works" className="section">
+        </Section>
+        <Section id="works">
           <Works />
-        </div>
-        <div id="contact" className="section">
+        </Section>
+        <Section id="contact">
           <Contact />
-        </div>
+        </Section>
       </Layout>
     </Router>
   );

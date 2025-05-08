@@ -18,24 +18,6 @@ function ServicesSection() {
       description:
         "Lorem ipsum dolor sit amet, dolor adipiscing elit. Non nisi",
     },
-    {
-      id: "04",
-      title: "User Research",
-      description:
-        "Lorem ipsum dolor sit amet, dolor adipiscing elit. Non nisi",
-    },
-    {
-      id: "05",
-      title: "Animation",
-      description:
-        "Lorem ipsum dolor sit amet, dolor adipiscing elit. Non nisi",
-    },
-    {
-      id: "06",
-      title: "Game Development",
-      description:
-        "Lorem ipsum dolor sit amet, dolor adipiscing elit. Non nisi",
-    },
   ];
 
   return (
