@@ -34,24 +34,6 @@ function AboutSection() {
               success.
             </p>
           </div>
-          <div className="grid grid-cols-4 gap-4 mb-12">
-            <div>
-              <p className="text-gray-500 text-sm">AGE</p>
-              <p className="font-medium">25</p>
-            </div>
-            <div>
-              <p className="text-gray-500 text-sm">BORN IN</p>
-              <p className="font-medium">Florida, USA</p>
-            </div>
-            <div>
-              <p className="text-gray-500 text-sm">MAIL</p>
-              <p className="font-medium">info@elisc.com</p>
-            </div>
-            <div>
-              <p className="text-gray-500 text-sm">CALL</p>
-              <p className="font-medium">(+987) 987 654 321</p>
-            </div>
-          </div>
         </div>
       </div>
     </div>

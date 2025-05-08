@@ -5,3 +5,18 @@
 body {
   @apply bg-gray-50 font-sans;
 }
+
+html {
+  scroll-behavior: smooth;
+}
+
+.section {
+  min-height: 100vh;
+  scroll-margin-top: 2rem;
+}
+
+@media (max-width: 768px) {
+  .section {
+    scroll-margin-top: 1rem;
+  }
+}

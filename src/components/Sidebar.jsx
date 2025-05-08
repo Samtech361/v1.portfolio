@@ -1,23 +1,33 @@
-import { NavLink } from "react-router-dom";
 import { useState } from "react";
 import { FaGithub, FaInstagram, FaWhatsapp } from "react-icons/fa";
 import { HiMenu, HiX } from "react-icons/hi";
+import useActiveSection from "../hooks/useActiveSection";
 
 function Sidebar() {
   const [isOpen, setIsOpen] = useState(false);
+
+  const links = [
+    { name: "Home", sectionId: "home" },
+    { name: "About", sectionId: "about" },
+    { name: "Services", sectionId: "services" },
+    { name: "Works", sectionId: "works" },
+    { name: "Contact", sectionId: "contact" },
+  ];
+
+  const sectionIds = links.map((link) => link.sectionId);
+  const activeSection = useActiveSection(sectionIds);
 
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
   };
 
-  const links = [
-    { name: "Home", path: "/" },
-    { name: "About", path: "/about" },
-    { name: "Services", path: "/services" },
-    { name: "Works", path: "/works" },
-    // { name: "Blogs", path: "/blogs" },
-    { name: "Contact", path: "/contact" },
-  ];
+  const scrollToSection = (sectionId) => {
+    setIsOpen(false);
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
 
   return (
     <>
@@ -46,19 +56,17 @@ function Sidebar() {
           <nav className="flex-1 flex items-center justify-center">
             <ul className="space-y-2 text-center w-full">
               {links.map((link) => (
-                <li key={link.path} onClick={() => setIsOpen(false)}>
-                  <NavLink
-                    to={link.path}
-                    className={({ isActive }) =>
-                      `block py-3 px-4 ${
-                        isActive
-                          ? "text-indigo-600 font-medium"
-                          : "text-gray-500 hover:text-indigo-500"
-                      }`
-                    }
+                <li key={link.sectionId}>
+                  <button
+                    onClick={() => scrollToSection(link.sectionId)}
+                    className={`block w-full py-3 px-4 text-center transition-colors ${
+                      activeSection === link.sectionId
+                        ? "text-indigo-600 font-medium"
+                        : "text-gray-500 hover:text-indigo-500"
+                    }`}
                   >
                     {link.name}
-                  </NavLink>
+                  </button>
                 </li>
               ))}
             </ul>
@@ -68,22 +76,28 @@ function Sidebar() {
         {/* Social icons */}
         <div className="flex justify-center space-x-4 p-6">
           <a
+            target="_blank"
             href="https://github.com/samtech361"
             className="h-8 w-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-indigo-100 hover:text-indigo-600 transition-colors"
+            rel="noopener noreferrer"
           >
             <span className="sr-only">Github</span>
             <FaGithub className="h-5 w-5" />
           </a>
           <a
+            target="_blank"
             href="https://wa.me/254713373270"
             className="h-8 w-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-indigo-100 hover:text-indigo-600 transition-colors"
+            rel="noopener noreferrer"
           >
             <span className="sr-only">WhatsApp</span>
             <FaWhatsapp className="h-5 w-5" />
           </a>
           <a
             href="https://www.instagram.com/beaversam36/"
+            target="_blank"
             className="h-8 w-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-indigo-100 hover:text-indigo-600 transition-colors"
+            rel="noopener noreferrer"
           >
             <span className="sr-only">Instagram</span>
             <FaInstagram className="h-5 w-5" />
