@@ -1,6 +1,87 @@
+import { useState, useEffect } from "react";
 import { FaGithub, FaInstagram, FaWhatsapp } from "react-icons/fa";
+import emailjs from "@emailjs/browser";
 
 function Contact() {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
+  });
+
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState({
+    success: false,
+    error: false,
+    message: "",
+  });
+
+  useEffect(() => {
+    if (import.meta.env.VITE_EMAILJS_USER_ID) {
+      emailjs.init(import.meta.env.VITE_EMAILJS_USER_ID);
+    }
+  }, []);
+
+  const handleChange = (e) => {
+    const { id, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [id]: value,
+    }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus({
+      success: false,
+      error: false,
+      message: "",
+    });
+
+    // Using environment variables for EmailJS configuration
+    const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+    const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+    const userId = import.meta.env.VITE_EMAILJS_USER_ID;
+
+    const templateParams = {
+      from_name: formData.name,
+      from_email: formData.email,
+      subject: formData.subject,
+      message: formData.message,
+    };
+
+    emailjs
+      .send(serviceId, templateId, templateParams)
+      .then((response) => {
+        console.log("SUCCESS!", response.status, response.text);
+        setSubmitStatus({
+          success: true,
+          error: false,
+          message: "Message sent successfully!",
+        });
+        // Reset form
+        setFormData({
+          name: "",
+          email: "",
+          subject: "",
+          message: "",
+        });
+      })
+      .catch((error) => {
+        console.error("FAILED...", error);
+        setSubmitStatus({
+          success: false,
+          error: true,
+          message: "Failed to send message. Please try again.",
+        });
+      })
+      .finally(() => {
+        setIsSubmitting(false);
+      });
+  };
+
   return (
     <div className="py-12">
       <div className="container mx-auto px-6">
@@ -88,6 +169,7 @@ function Contact() {
                   <a
                     href="https://github.com/samtech361"
                     target="_blank"
+                    rel="noopener noreferrer"
                     className="h-8 w-8 rounded-full bg-gray-100 flex items-center justify-center text-indigo-500 hover:bg-indigo-100 hover:text-indigo-600 transition-colors"
                   >
                     <span className="sr-only">Github</span>
@@ -96,6 +178,7 @@ function Contact() {
                   <a
                     href="https://wa.me/254713373270"
                     target="_blank"
+                    rel="noopener noreferrer"
                     className="h-8 w-8 rounded-full bg-gray-100 flex items-center justify-center text-indigo-500 hover:bg-indigo-100 hover:text-indigo-600 transition-colors"
                   >
                     <span className="sr-only">WhatsApp</span>
@@ -104,6 +187,7 @@ function Contact() {
                   <a
                     href="https://www.instagram.com/beaversam36/"
                     target="_blank"
+                    rel="noopener noreferrer"
                     className="h-8 w-8 rounded-full bg-gray-100 flex items-center justify-center text-indigo-500 hover:bg-indigo-100 hover:text-indigo-600 transition-colors"
                   >
                     <span className="sr-only">Instagram</span>
@@ -120,7 +204,19 @@ function Contact() {
                 Send Me A Message
               </h3>
 
-              <form>
+              {submitStatus.success && (
+                <div className="mb-6 p-4 bg-green-50 border border-green-200 text-green-700 rounded-lg">
+                  {submitStatus.message}
+                </div>
+              )}
+
+              {submitStatus.error && (
+                <div className="mb-6 p-4 bg-red-50 border border-red-200 text-red-700 rounded-lg">
+                  {submitStatus.message}
+                </div>
+              )}
+
+              <form onSubmit={handleSubmit}>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                   <div>
                     <label
@@ -132,6 +228,9 @@ function Contact() {
                     <input
                       type="text"
                       id="name"
+                      value={formData.name}
+                      onChange={handleChange}
+                      required
                       className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
                       placeholder="Enter your name"
                     />
@@ -147,6 +246,9 @@ function Contact() {
                     <input
                       type="email"
                       id="email"
+                      value={formData.email}
+                      onChange={handleChange}
+                      required
                       className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
                       placeholder="Enter your email"
                     />
@@ -163,6 +265,9 @@ function Contact() {
                   <input
                     type="text"
                     id="subject"
+                    value={formData.subject}
+                    onChange={handleChange}
+                    required
                     className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
                     placeholder="Enter subject"
                   />
@@ -178,6 +283,9 @@ function Contact() {
                   <textarea
                     id="message"
                     rows="5"
+                    value={formData.message}
+                    onChange={handleChange}
+                    required
                     className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
                     placeholder="Enter your message"
                   ></textarea>
@@ -185,9 +293,40 @@ function Contact() {
 
                 <button
                   type="submit"
-                  className="bg-indigo-500 text-white px-8 py-3 rounded font-medium hover:bg-gray-800 transition-colors"
+                  disabled={isSubmitting}
+                  className={`${
+                    isSubmitting
+                      ? "bg-indigo-400"
+                      : "bg-indigo-500 hover:bg-gray-800"
+                  } text-white px-8 py-3 rounded font-medium transition-colors flex items-center`}
                 >
-                  Send Message
+                  {isSubmitting ? (
+                    <>
+                      <svg
+                        className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                      >
+                        <circle
+                          className="opacity-25"
+                          cx="12"
+                          cy="12"
+                          r="10"
+                          stroke="currentColor"
+                          strokeWidth="4"
+                        ></circle>
+                        <path
+                          className="opacity-75"
+                          fill="currentColor"
+                          d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                        ></path>
+                      </svg>
+                      Sending...
+                    </>
+                  ) : (
+                    "Send Message"
+                  )}
                 </button>
               </form>
             </div>

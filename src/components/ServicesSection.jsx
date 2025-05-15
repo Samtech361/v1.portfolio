@@ -2,21 +2,33 @@ function ServicesSection() {
   const services = [
     {
       id: "01",
-      title: "Web Design",
+      title: "Frontend Development",
       description:
-        "Lorem ipsum dolor sit amet, dolor adipiscing elit. Non nisi",
+        "Building responsive and interactive user interfaces using React, HTML, CSS, and JavaScript to create engaging web experiences.",
     },
     {
       id: "02",
-      title: "UI/UX",
+      title: "Backend Development",
       description:
-        "Lorem ipsum dolor sit amet, dolor adipiscing elit. Non nisi",
+        "Creating robust server-side applications and RESTful APIs using Node.js, Express, and database integration.",
     },
     {
       id: "03",
-      title: "Mobile Application",
+      title: "API Development",
       description:
-        "Lorem ipsum dolor sit amet, dolor adipiscing elit. Non nisi",
+        "Designing and implementing APIs that connect applications and services, with proper documentation and testing.",
+    },
+    {
+      id: "04",
+      title: "Responsive Web Design",
+      description:
+        "Crafting websites that work seamlessly across all devices using modern CSS frameworks like Tailwind.",
+    },
+    {
+      id: "05",
+      title: "Code Optimization",
+      description:
+        "Improving application performance through efficient coding practices and identifying optimization opportunities.",
     },
   ];
 
