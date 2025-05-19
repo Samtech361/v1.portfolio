@@ -94,6 +94,15 @@ function Sidebar() {
             <FaWhatsapp className="h-5 w-5" />
           </a>
           <a
+            href="https://www.instagram.com/beaversam36/"
+            target="_blank"
+            className="h-8 w-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-indigo-100 hover:text-indigo-600 transition-colors"
+            rel="noopener noreferrer"
+          >
+            <span className="sr-only">Instagram</span>
+            <FaInstagram className="h-5 w-5" />
+          </a>
+          <a
             href="www.linkedin.com/in/nsamuel361"
             target="_blank"
             className="h-8 w-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-indigo-100 hover:text-indigo-600 transition-colors"
