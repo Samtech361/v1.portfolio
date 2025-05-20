@@ -78,7 +78,7 @@ function ExperienceSection() {
                 <p className="text-orange-400 text-sm">2024 - Present</p>
                 <h3 className="font-bold text-indigo-900">Web Developer</h3>
               </div>
-              <p className="text-gray-500 text-sm">-Envato</p>
+              <p className="text-gray-500 text-sm">Freelance</p>
             </div>
           </div>
         </div>

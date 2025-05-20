@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { FaGithub, FaInstagram, FaWhatsapp, FaLinkedin} from "react-icons/fa";
+import { FaGithub, FaInstagram, FaWhatsapp, FaLinkedin } from "react-icons/fa";
 import { HiMenu, HiX } from "react-icons/hi";
 import useActiveSection from "../hooks/useActiveSection";
 
@@ -103,13 +103,13 @@ function Sidebar() {
             <FaInstagram className="h-5 w-5" />
           </a>
           <a
-            href="www.linkedin.com/in/nsamuel361"
+            href="https://www.linkedin.com/in/nsamuel361"
             target="_blank"
             className="h-8 w-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-indigo-100 hover:text-indigo-600 transition-colors"
             rel="noopener noreferrer"
           >
             <span className="sr-only">LinkedIn</span>
-            <FaLinkedin  className="h-5 w-5" />
+            <FaLinkedin className="h-5 w-5" />
           </a>
         </div>
 
