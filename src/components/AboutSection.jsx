@@ -11,7 +11,7 @@ function AboutSection() {
             Web Designer & Developer
           </p>
           <a
-            href="../../public/resume.pdf"
+            href="/resume.pdf"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-block bg-indigo-500 text-white px-6 py-3 rounded mb-12"
